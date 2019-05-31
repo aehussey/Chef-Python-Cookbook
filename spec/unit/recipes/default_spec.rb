@@ -33,12 +33,6 @@ describe 'python::default' do
     it 'should upgrade python-pip' do
       expect(chef_run).to upgrade_package('python-pip')
     end
-    it 'should install virtualenv' do
-      expect(chef_run).to install_package('virtualenv')
-    end
-    it 'should upgrade virtualenv' do
-      expect(chef_run).to upgrade_package('virtualenv')
-    end
     at_exit { ChefSpec::Coverage.report! }
   end
 end

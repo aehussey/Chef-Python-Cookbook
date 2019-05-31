@@ -16,10 +16,6 @@ package 'python-pip' do
   action [:install, :upgrade]
 end
 
-package "virtualenv" do
-  action [:install, :upgrade]
-end
-
 template '/etc/python3/requirements.txt' do
   source 'requirements.txt'
 end
