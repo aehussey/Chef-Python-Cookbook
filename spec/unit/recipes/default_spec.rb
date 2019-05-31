@@ -33,6 +33,9 @@ describe 'python::default' do
     it 'should upgrade python-pip' do
       expect(chef_run).to upgrade_package('python-pip')
     end
+    it 'should create a requirements.txt template in /etc/python3' do
+    expect(chef_run).to create_template("/etc/pyhton3/requirements.txt")
+  end
     at_exit { ChefSpec::Coverage.report! }
   end
 end

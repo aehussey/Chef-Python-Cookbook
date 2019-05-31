@@ -7,6 +7,14 @@
 
 
 # This is an example test, replace it with your own test.
+describe package ('python3') do
+  it { should be_installed }
+end
+
+describe package ('python-pip') do
+  it { should be_installed }
+end
+
 describe pip('Flask') do
   it { should be_installed }
   its('version') { should eq '0.10.1' }
