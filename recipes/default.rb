@@ -16,6 +16,10 @@ package 'python-pip' do
   action [:install, :upgrade]
 end
 
+service 'pip install' do
+  action [:enable, :start]
+end
+
 template '/etc/python3/requirements.txt' do
   source 'requirements.txt'
 end
