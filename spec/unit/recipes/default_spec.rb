@@ -11,7 +11,7 @@ describe 'python::default' do
     let(:chef_run) do
       # for a complete list of available platforms and versions see:
       # https://github.com/customink/fauxhai/blob/master/PLATFORMS.md
-      runner = ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '16.04')
+      runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
       runner.converge(described_recipe)
     end
 
@@ -33,8 +33,18 @@ describe 'python::default' do
     it 'should upgrade python-pip' do
       expect(chef_run).to upgrade_package('python-pip')
     end
-    it 'should create a requirements.txt template in /etc/python3' do
-    expect(chef_run).to create_template("/etc/pyhton3/requirements.txt")
+
+   it 'should enable pip install' do
+     expect(chef_run).to enable_service "pip install"
+   end
+   it 'should start pip install' do
+    expect(chef_run).to start_service "pip install"
+  end
+  it 'should create a requirements.txt template in /etc/python3/' do
+    expect(chef_run).to create_template("/etc/python3/requirements.txt")
+  end
+  it 'should execute pip install' do
+    expect(chef_run).to run_execute('pip install')
   end
     at_exit { ChefSpec::Coverage.report! }
   end
